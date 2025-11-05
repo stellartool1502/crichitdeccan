@@ -693,34 +693,34 @@
 }
 
         // Save team
-        function saveTeam() {
-            const teamName = document.getElementById('teamName').value;
-            
-            if (!teamName) {
-                alert('Please enter a team name');
-                return;
-            }
+       function saveTeam() {
+    const teamName = document.getElementById('teamName').value;
+    
+    if (!teamName) {
+        alert('Please enter a team name');
+        return;
+    }
 
-            if (currentTeam.players.length < 5) {
-                alert('Please select at least 5 players for the team');
-                return;
-            }
+    if (currentTeam.players.length < 5) {
+        alert('Please select at least 5 players for the team');
+        return;
+    }
 
-            currentTeam.name = teamName;
-            currentTeam.id = Date.now();
-            currentTeam.createdAt = new Date().toLocaleDateString();
-            currentTeam.playerCount = currentTeam.players.length;
+    currentTeam.name = teamName;
+    currentTeam.id = Date.now();
+    currentTeam.createdAt = new Date().toLocaleDateString();
+    currentTeam.playerCount = currentTeam.players.length;
 
-            // Save to localStorage
-            const savedTeams = getSavedTeams();
-            savedTeams.push(currentTeam);
-            localStorage.setItem('saved_teams', JSON.stringify(savedTeams));
+    // Save to localStorage
+    const savedTeams = getSavedTeams();
+    savedTeams.push(currentTeam);
+    localStorage.setItem('saved_teams', JSON.stringify(savedTeams));
 
-            alert(`🎉 Team "${teamName}" saved successfully with ${currentTeam.players.length} players!`);
-            updateSavedTeamsList();
-            clearSelection();
-            document.getElementById('teamName').value = '';
-        }
+    alert(`🎉 Team "${teamName}" saved successfully with ${currentTeam.players.length} players!`);
+    updateSavedTeamsList();
+    clearSelection();
+    document.getElementById('teamName').value = '';
+}
 
         // Get saved teams from localStorage
         function getSavedTeams() {
