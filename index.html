@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Scorer - Fully Working</title>
+    <title>Cricket Scorer - Flexible Team Setup</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
@@ -23,103 +23,6 @@
         .form-input { width: 100%; padding: 12px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 16px; }
         .form-input:focus { border-color: #4299e1; outline: none; }
         
-        /* Tournament specific styles */
-        .tournament-card { border: 1px solid #e2e8f0; padding: 15px; margin: 10px 0; border-radius: 8px; background: #f8fafc; }
-        .tournament-card h4 { margin: 0 0 10px 0; color: #2d3748; }
-        .tournament-card p { margin: 5px 0; color: #4a5568; }
-        .small-btn { padding: 8px 15px; font-size: 14px; margin: 5px; }
-        
-        /* Player Profiles specific styles */
-        .player-card { border: 1px solid #e2e8f0; padding: 20px; margin: 15px 0; border-radius: 10px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .player-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .player-name { font-size: 1.4rem; color: #2d3748; font-weight: bold; }
-        .player-type { background: #4299e1; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
-        .stat-card { background: #f7fafc; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #4299e1; }
-        .stat-value { font-size: 1.5rem; font-weight: bold; color: #2d3748; }
-        .stat-label { font-size: 0.8rem; color: #718096; margin-top: 5px; }
-        .search-bar { width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 16px; }
-        
-        /* New styles for completed matches, local matches and statistics */
-        .match-card { border: 1px solid #e2e8f0; padding: 20px; margin: 15px 0; border-radius: 10px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .match-teams { font-size: 1.3rem; font-weight: bold; color: #2d3748; margin-bottom: 10px; }
-        .match-score { font-family: monospace; font-size: 1.2rem; color: #4a5568; margin-bottom: 10px; }
-        .match-result { color: #38a169; font-weight: bold; }
-        .local-match-card { border: 1px solid #e2e8f0; padding: 15px; margin: 10px 0; border-radius: 8px; background: #f0fff4; }
-        .live-badge { background: #e53e3e; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: bold; }
-        .upcoming-badge { background: #3182ce; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: bold; }
-        .chart-container { background: #f7fafc; padding: 20px; border-radius: 10px; margin: 15px 0; }
-
-        /* Live Scoring Styles */
-        .scoring-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .scoring-btn {
-            padding: 12px 8px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-        }
-
-        .scoring-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .run-btn {
-            background: #d1fae5;
-            color: #065f46;
-            border: 2px solid #a7f3d0;
-        }
-
-        .wicket-btn {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 2px solid #fecaca;
-        }
-
-        .extra-btn {
-            background: #fef3c7;
-            color: #92400e;
-            border: 2px solid #fde68a;
-        }
-
-        .control-btn {
-            background: #e0e7ff;
-            color: #3730a3;
-            border: 2px solid #c7d2fe;
-        }
-
-        .player-status {
-            background: #f7fafc;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #4299e1;
-        }
-
-        .ball-dot {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin: 0 2px;
-            text-align: center;
-            line-height: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .ball-run { background: #d1fae5; color: #065f46; }
-        .ball-wicket { background: #fee2e2; color: #991b1b; }
-        .ball-extra { background: #fef3c7; color: #92400e; }
-        .ball-dot-ball { background: #e2e8f0; color: #4a5568; }
-
         /* Team Setup Styles */
         .team-setup-container {
             display: grid;
@@ -243,6 +146,82 @@
             color: white;
             border-color: #4299e1;
         }
+
+        .small-btn { padding: 8px 15px; font-size: 14px; margin: 5px; }
+        
+        /* Tournament specific styles */
+        .tournament-card { border: 1px solid #e2e8f0; padding: 15px; margin: 10px 0; border-radius: 8px; background: #f8fafc; }
+        .tournament-card h4 { margin: 0 0 10px 0; color: #2d3748; }
+        .tournament-card p { margin: 5px 0; color: #4a5568; }
+        
+        /* Add Player Form Styles */
+        .add-player-form {
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px dashed #68d391;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .player-type-options {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .player-type-btn {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .player-type-btn.selected {
+            background: #4299e1;
+            color: white;
+            border-color: #4299e1;
+        }
+        
+        /* Over Selection Styles */
+        .over-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .over-option {
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .over-option.selected {
+            background: #4299e1;
+            color: white;
+            border-color: #4299e1;
+        }
+        
+        .team-size-info {
+            background: #fffaf0;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ed8936;
+        }
     </style>
 </head>
 <body>
@@ -262,7 +241,7 @@
                 
                 <div class="card" onclick="showScreen('teamSetup')">
                     <h3>👥 Team Setup</h3>
-                    <p>Create teams with 11 players, batting order, bowling lineup and fielding positions</p>
+                    <p>Create teams with 5-11 players, batting order, bowling lineup and fielding positions</p>
                 </div>
                 
                 <div class="card" onclick="showScreen('tournaments')">
@@ -273,21 +252,6 @@
                 <div class="card" onclick="showScreen('players')">
                     <h3>👤 Player Profiles</h3>
                     <p>View detailed player statistics, performance history and rankings</p>
-                </div>
-                
-                <div class="card" onclick="showScreen('matches')">
-                    <h3>📊 Completed Matches</h3>
-                    <p>Browse through complete match history with scores and results</p>
-                </div>
-                
-                <div class="card" onclick="showScreen('local')">
-                    <h3>📍 Local Matches</h3>
-                    <p>Find and join local cricket matches in your area</p>
-                </div>
-                
-                <div class="card" onclick="showScreen('stats')">
-                    <h3>📈 Live Statistics</h3>
-                    <p>Real-time match statistics and player performance analytics</p>
                 </div>
             </div>
         </div>
@@ -301,14 +265,21 @@
             <div class="form-group">
                 <input type="text" class="form-input" placeholder="🏏 Team B Name" id="teamB">
             </div>
+            
             <div class="form-group">
-                <select class="form-input" id="matchType">
-                    <option>20 Overs Match</option>
-                    <option>50 Overs Match</option>
-                    <option>Test Match (5 Days)</option>
-                    <option>T10 Match</option>
-                </select>
+                <h3>Select Overs</h3>
+                <div class="over-selection">
+                    <div class="over-option" data-overs="5" onclick="selectOvers(5)">5 Overs</div>
+                    <div class="over-option" data-overs="6" onclick="selectOvers(6)">6 Overs</div>
+                    <div class="over-option" data-overs="7" onclick="selectOvers(7)">7 Overs</div>
+                    <div class="over-option" data-overs="8" onclick="selectOvers(8)">8 Overs</div>
+                    <div class="over-option" data-overs="10" onclick="selectOvers(10)">10 Overs</div>
+                    <div class="over-option" data-overs="15" onclick="selectOvers(15)">15 Overs</div>
+                    <div class="over-option" data-overs="20" onclick="selectOvers(20)">20 Overs</div>
+                    <div class="over-option" data-overs="25" onclick="selectOvers(25)">25 Overs</div>
+                </div>
             </div>
+            
             <button class="btn" onclick="startMatch()">🚀 Start Match</button>
             <button class="btn" onclick="showScreen('home')" style="background: #718096;">← Back to Home</button>
         </div>
@@ -317,7 +288,7 @@
         <div id="teamSetupScreen" class="screen hidden">
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2>👥 Team Setup</h2>
-                <p>Create complete teams with players, batting order, bowling lineup and fielding positions</p>
+                <p>Create complete teams with players (5-11 players), batting order, bowling lineup and fielding positions</p>
             </div>
 
             <div class="card">
@@ -326,15 +297,33 @@
                     <input type="text" class="form-input" placeholder="Team Name" id="teamName">
                 </div>
                 
+                <!-- Add Player Form -->
+                <div class="add-player-form">
+                    <h4>➕ Add New Player</h4>
+                    <div class="form-row">
+                        <input type="text" class="form-input" placeholder="Player Name" id="newPlayerName">
+                        <input type="text" class="form-input" placeholder="Role (e.g., Opening Batsman)" id="newPlayerRole">
+                        <button class="btn small-btn" onclick="addNewPlayer()" style="background: #38a169;">Add Player</button>
+                    </div>
+                    <div class="player-type-options">
+                        <div class="player-type-btn" data-type="batsman" onclick="selectPlayerType('batsman')">Batsman</div>
+                        <div class="player-type-btn" data-type="bowler" onclick="selectPlayerType('bowler')">Bowler</div>
+                        <div class="player-type-btn" data-type="allrounder" onclick="selectPlayerType('allrounder')">All-Rounder</div>
+                        <div class="player-type-btn" data-type="wicketkeeper" onclick="selectPlayerType('wicketkeeper')">Wicket Keeper</div>
+                    </div>
+                </div>
+                
+                <div class="team-size-info">
+                    <p>🎯 <strong>Team Size:</strong> Select between 5 to 11 players for your team</p>
+                    <p>📊 <strong>Current Selection:</strong> <span id="selectedCount">0</span>/11 players</p>
+                </div>
+                
                 <div class="team-setup-container">
-                    <!-- Team A Section -->
+                    <!-- Available Players Section -->
                     <div class="team-section">
-                        <h4>Team Players Selection</h4>
+                        <h4>Available Players</h4>
                         <div class="player-list" id="availablePlayers">
                             <!-- Players will be loaded here -->
-                        </div>
-                        <div style="text-align: center; margin: 10px 0;">
-                            <span id="selectedCount">0/11 players selected</span>
                         </div>
                     </div>
 
@@ -403,34 +392,44 @@
             </div>
         </div>
 
-        <!-- Live Scoring Screen -->
-        <div id="scoringScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
-        </div>
-
         <!-- Tournament Screen -->
         <div id="tournamentsScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
+            <h2>🏆 Tournaments</h2>
+            <div class="card">
+                <h3>Create New Tournament</h3>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Tournament Name" id="tournamentName">
+                </div>
+                <div class="form-group">
+                    <select class="form-input" id="tournamentType">
+                        <option>Round Robin</option>
+                        <option>Knockout</option>
+                        <option>League + Playoffs</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="createTournament()">Create Tournament</button>
+            </div>
+            
+            <div class="card">
+                <h3>Your Tournaments</h3>
+                <div id="tournamentList">
+                    <p style="color: #666; text-align: center;">No tournaments created yet</p>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="showScreen('home')" style="background: #718096;">← Back to Home</button>
         </div>
 
         <!-- Player Profiles Screen -->
         <div id="playersScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
-        </div>
-
-        <!-- Completed Matches Screen -->
-        <div id="matchesScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
-        </div>
-
-        <!-- Local Matches Screen -->
-        <div id="localScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
-        </div>
-
-        <!-- Live Statistics Screen -->
-        <div id="statsScreen" class="screen hidden">
-            <!-- ... (same as before) ... -->
+            <h2>👤 Player Profiles</h2>
+            <input type="text" class="form-input search-bar" placeholder="🔍 Search players..." onkeyup="searchPlayers(this.value)">
+            
+            <div id="playersList">
+                <p style="color: #666; text-align: center;">No players added yet. Go to Team Setup to add players.</p>
+            </div>
+            
+            <button class="btn" onclick="showScreen('home')" style="background: #718096;">← Back to Home</button>
         </div>
     </div>
 
@@ -445,6 +444,8 @@
         };
 
         let availablePlayers = [];
+        let selectedPlayerType = 'batsman';
+        let selectedOvers = 20; // Default to 20 overs
 
         // Initialize Team Setup
         function initializeTeamSetup() {
@@ -459,30 +460,20 @@
             if (storedPlayers.length > 0) {
                 availablePlayers = storedPlayers;
             } else {
-                // Create sample players if none exist
-                availablePlayers = [
-                    { id: 1, name: 'Virat Kohli', type: 'batsman', role: 'Top Order Batsman' },
-                    { id: 2, name: 'Rohit Sharma', type: 'batsman', role: 'Opening Batsman' },
-                    { id: 3, name: 'Jasprit Bumrah', type: 'bowler', role: 'Fast Bowler' },
-                    { id: 4, name: 'Ravindra Jadeja', type: 'allrounder', role: 'All-Rounder' },
-                    { id: 5, name: 'MS Dhoni', type: 'wicketkeeper', role: 'Wicket Keeper' },
-                    { id: 6, name: 'Hardik Pandya', type: 'allrounder', role: 'All-Rounder' },
-                    { id: 7, name: 'Rishabh Pant', type: 'wicketkeeper', role: 'Wicket Keeper' },
-                    { id: 8, name: 'Mohammed Shami', type: 'bowler', role: 'Fast Bowler' },
-                    { id: 9, name: 'KL Rahul', type: 'batsman', role: 'Top Order Batsman' },
-                    { id: 10, name: 'Yuzvendra Chahal', type: 'bowler', role: 'Spinner' },
-                    { id: 11, name: 'Shikhar Dhawan', type: 'batsman', role: 'Opening Batsman' },
-                    { id: 12, name: 'Bhuvneshwar Kumar', type: 'bowler', role: 'Fast Bowler' },
-                    { id: 13, name: 'Ravichandran Ashwin', type: 'bowler', role: 'Spinner' },
-                    { id: 14, name: 'Shreyas Iyer', type: 'batsman', role: 'Middle Order Batsman' },
-                    { id: 15, name: 'Washington Sundar', type: 'allrounder', role: 'All-Rounder' }
-                ];
+                // Start with empty player list instead of default players
+                availablePlayers = [];
             }
         }
 
         // Update available players list
         function updateAvailablePlayersList() {
             const availablePlayersList = document.getElementById('availablePlayers');
+            
+            if (availablePlayers.length === 0) {
+                availablePlayersList.innerHTML = '<p style="color: #666; text-align: center;">No players added yet. Use the form above to add players.</p>';
+                return;
+            }
+            
             availablePlayersList.innerHTML = availablePlayers.map(player => `
                 <div class="player-item" onclick="selectPlayer(${player.id})" 
                      data-player-id="${player.id}">
@@ -497,10 +488,58 @@
             `).join('');
         }
 
+        // Add new player to available players
+        function addNewPlayer() {
+            const playerName = document.getElementById('newPlayerName').value;
+            const playerRole = document.getElementById('newPlayerRole').value;
+            
+            if (!playerName) {
+                alert('Please enter a player name');
+                return;
+            }
+            
+            // Check if player already exists
+            if (availablePlayers.find(p => p.name.toLowerCase() === playerName.toLowerCase())) {
+                alert('Player with this name already exists');
+                return;
+            }
+            
+            const newPlayer = {
+                id: Date.now(), // Use timestamp as unique ID
+                name: playerName,
+                type: selectedPlayerType,
+                role: playerRole || selectedPlayerType
+            };
+            
+            availablePlayers.push(newPlayer);
+            updateAvailablePlayersList();
+            
+            // Save players to localStorage
+            savePlayers();
+            
+            // Clear the form
+            document.getElementById('newPlayerName').value = '';
+            document.getElementById('newPlayerRole').value = '';
+            
+            // Show success message
+            alert(`Player "${playerName}" added successfully!`);
+        }
+
+        // Select player type
+        function selectPlayerType(type) {
+            selectedPlayerType = type;
+            
+            // Update UI
+            document.querySelectorAll('.player-type-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.querySelector(`.player-type-btn[data-type="${type}"]`).classList.add('selected');
+        }
+
         // Select player for team
         function selectPlayer(playerId) {
             if (currentTeam.players.length >= 11) {
-                alert('Team already has 11 players. Remove some players to add new ones.');
+                alert('Team already has maximum 11 players. Remove some players to add new ones.');
                 return;
             }
 
@@ -528,7 +567,7 @@
             const selectedPlayersList = document.getElementById('selectedPlayers');
             const selectedCount = document.getElementById('selectedCount');
             
-            selectedCount.textContent = `${currentTeam.players.length}/11 players selected`;
+            selectedCount.textContent = `${currentTeam.players.length}`;
             
             if (currentTeam.players.length === 0) {
                 selectedPlayersList.innerHTML = '<p style="color: #666; text-align: center;">No players selected</p>';
@@ -640,18 +679,18 @@
         }
 
         // Clear all selection
-        function clearSelection() {
-            currentTeam = {
-                name: '',
-                players: [],
-                battingOrder: [],
-                bowlingLineup: [],
-                fieldingPositions: {}
-            };
-            updateSelectedPlayersList();
-            updateBattingOrderList();
-            updateBowlingLineupList();
-        }
+     function clearSelection() {
+    currentTeam = {
+        name: '',
+        players: [],
+        battingOrder: [],
+        bowlingLineup: [],
+        fieldingPositions: {}
+    };
+    updateSelectedPlayersList();
+    updateBattingOrderList();
+    updateBowlingLineupList();
+}
 
         // Save team
         function saveTeam() {
@@ -662,21 +701,22 @@
                 return;
             }
 
-            if (currentTeam.players.length !== 11) {
-                alert('Please select exactly 11 players for the team');
+            if (currentTeam.players.length < 5) {
+                alert('Please select at least 5 players for the team');
                 return;
             }
 
             currentTeam.name = teamName;
             currentTeam.id = Date.now();
             currentTeam.createdAt = new Date().toLocaleDateString();
+            currentTeam.playerCount = currentTeam.players.length;
 
             // Save to localStorage
             const savedTeams = getSavedTeams();
             savedTeams.push(currentTeam);
             localStorage.setItem('saved_teams', JSON.stringify(savedTeams));
 
-            alert(`🎉 Team "${teamName}" saved successfully!`);
+            alert(`🎉 Team "${teamName}" saved successfully with ${currentTeam.players.length} players!`);
             updateSavedTeamsList();
             clearSelection();
             document.getElementById('teamName').value = '';
@@ -701,7 +741,7 @@
             savedTeamsList.innerHTML = savedTeams.map(team => `
                 <div class="tournament-card">
                     <h4>${team.name}</h4>
-                    <p>👥 ${team.players.length} Players</p>
+                    <p>👥 ${team.playerCount || team.players.length} Players</p>
                     <p>📅 Created: ${team.createdAt}</p>
                     <p>🦇 Batting: ${team.battingOrder.slice(0, 3).map(p => p.name).join(', ')}...</p>
                     <p>🎯 Bowling: ${team.bowlingLineup.slice(0, 2).map(p => p.name).join(', ')}...</p>
@@ -740,21 +780,29 @@
             }
         }
 
-        // Fielding position selection
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fielding position click handlers
-            document.querySelectorAll('.fielding-position').forEach(position => {
-                position.addEventListener('click', function() {
-                    this.classList.toggle('selected');
-                    const positionName = this.getAttribute('data-position');
-                    // Store fielding position selection
-                    // Implementation can be extended based on requirements
-                });
+        // Get players from storage
+        function getPlayers() {
+            const data = localStorage.getItem('players');
+            return data ? JSON.parse(data) : [];
+        }
+
+        // Save players to storage
+        function savePlayers() {
+            localStorage.setItem('players', JSON.stringify(availablePlayers));
+        }
+
+        // Select overs for match
+        function selectOvers(overs) {
+            selectedOvers = overs;
+            
+            // Update UI
+            document.querySelectorAll('.over-option').forEach(option => {
+                option.classList.remove('selected');
             });
-        });
+            document.querySelector(`.over-option[data-overs="${overs}"]`).classList.add('selected');
+        }
 
-        // ... (rest of your existing JavaScript code remains the same) ...
-
+        // Screen navigation
         function showScreen(screenName) {
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
@@ -778,23 +826,16 @@
             if(screenName === 'players') {
                 updatePlayersList();
             }
-            if(screenName === 'matches') {
-                updateMatchesList();
-            }
-            if(screenName === 'local') {
-                findLocalMatches();
-            }
-            if(screenName === 'stats') {
-                updateStatistics();
-            }
             if(screenName === 'teamSetup') {
                 initializeTeamSetup();
             }
+            if(screenName === 'setup') {
+                // Set default selected overs
+                selectOvers(20);
+            }
         }
 
-        // ... (rest of your existing functions remain the same) ...
-
-        // Update startMatch function to use team setup
+        // Start a new match
         function startMatch() {
             const teamA = document.getElementById('teamA').value;
             const teamB = document.getElementById('teamB').value;
@@ -812,18 +853,88 @@
                     }
                 }
 
-                // Toss simulation
-                const tossWinner = Math.random() > 0.5 ? teamA : teamB;
-                const decision = Math.random() > 0.5 ? 'bat' : 'bowl';
-                const battingTeam = decision === 'bat' ? tossWinner : (tossWinner === teamA ? teamB : teamA);
-                
-                startLiveMatch(teamA, teamB, battingTeam);
+                alert(`Match started! ${teamA} vs ${teamB} - ${selectedOvers} overs match`);
+                // Here you would typically navigate to the live scoring screen
             } else {
                 alert('Please enter both team names to start the match');
             }
         }
 
-        // ... (rest of your existing code remains the same) ...
+        // Create tournament
+        function createTournament() {
+            const name = document.getElementById('tournamentName').value;
+            const type = document.getElementById('tournamentType').value;
+            
+            if (name) {
+                alert(`Tournament "${name}" created successfully!`);
+                document.getElementById('tournamentName').value = '';
+            } else {
+                alert('Please enter a tournament name');
+            }
+        }
+
+        // Update players list
+        function updatePlayersList() {
+            const playersList = document.getElementById('playersList');
+            
+            if (availablePlayers.length === 0) {
+                playersList.innerHTML = '<p style="color: #666; text-align: center;">No players added yet. Go to Team Setup to add players.</p>';
+                return;
+            }
+            
+            playersList.innerHTML = availablePlayers.map(player => `
+                <div class="player-card">
+                    <div class="player-header">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-type">${player.type}</div>
+                    </div>
+                    <p style="color: #718096; margin: 10px 0;">${player.role || 'Player'}</p>
+                </div>
+            `).join('');
+        }
+
+        // Search players
+        function searchPlayers(query) {
+            const playersList = document.getElementById('playersList');
+            const filteredPlayers = availablePlayers.filter(player => 
+                player.name.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filteredPlayers.length === 0) {
+                playersList.innerHTML = '<p style="color: #666; text-align: center;">No players found matching your search.</p>';
+                return;
+            }
+            
+            playersList.innerHTML = filteredPlayers.map(player => `
+                <div class="player-card">
+                    <div class="player-header">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-type">${player.type}</div>
+                    </div>
+                    <p style="color: #718096; margin: 10px 0;">${player.role || 'Player'}</p>
+                </div>
+            `).join('');
+        }
+
+        // Update tournament list
+        function updateTournamentList() {
+            // Implementation for tournament list
+            const tournamentList = document.getElementById('tournamentList');
+            tournamentList.innerHTML = '<p style="color: #666; text-align: center;">No tournaments created yet</p>';
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up fielding position selection
+            document.querySelectorAll('.fielding-position').forEach(position => {
+                position.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+            
+            // Set default player type
+            selectPlayerType('batsman');
+        });
     </script>
 </body>
 </html>
